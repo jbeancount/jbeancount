@@ -5,7 +5,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":jbeancount"))
+    implementation(project(":jbeancount-lib"))
     implementation("info.picocli:picocli:4.7.6")
     annotationProcessor("info.picocli:picocli-codegen:4.7.6")
 }
@@ -17,7 +17,7 @@ tasks {
 }
 
 application {
-    mainClass.set("nl.jrdie.beancount.cli.BeancountCli")
+    mainClass.set("nl.bluetainer.jbeancount.cli.BeancountCli")
 }
 
 //nativeBuild {

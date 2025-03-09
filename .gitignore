@@ -4,6 +4,3 @@
 /.gradle/
 /build/
 /*/build/
-
-/test-dont-push/*
-!/test-dont-push/build.gradle.kts
