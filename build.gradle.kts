@@ -2,7 +2,8 @@ import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.gradle.spotless.SpotlessPlugin
 
 plugins {
-    id("com.diffplug.spotless") version "6.8.0" apply false
+    id("com.diffplug.spotless") version "7.0.2" apply false
+    id("com.github.ben-manes.versions") version "0.52.0"
 }
 
 group = "nl.jrdie.beancount.parser"
@@ -19,16 +20,17 @@ subprojects {
     apply<SpotlessPlugin>()
     dependencies {
         val compileOnly by configurations
-        compileOnly("org.jetbrains:annotations:23.0.0")
+        compileOnly("org.jetbrains:annotations:26.0.2")
     }
     configure<JavaPluginExtension>() {
         toolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion = JavaLanguageVersion.of(23)
+            vendor = JvmVendorSpec.GRAAL_VM
         }
     }
     configure<SpotlessExtension>() {
         java {
-            googleJavaFormat("1.15.0")
+            googleJavaFormat()
             targetExclude("**/build/generated-src/**")
         }
     }

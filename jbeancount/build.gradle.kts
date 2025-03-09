@@ -2,18 +2,18 @@ plugins {
     id("java")
     id("antlr")
     id("com.diffplug.spotless")
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 dependencies {
-    antlr("org.antlr:antlr4:4.10.1")
-    implementation("org.antlr:antlr4-runtime:4.10.1")
+    antlr("org.antlr:antlr4:4.13.2")
+    implementation("org.antlr:antlr4-runtime:4.13.2")
     api("com.graphql-java:graphql-java:18.2")
 //    implementation("com.yuvalshavit:antlr-denter:1.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.8.1")
-    testImplementation("org.assertj:assertj-core:3.23.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.12.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.12.0")
+    testImplementation("org.assertj:assertj-core:3.27.3")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.12.0")
 }
 
 tasks {
@@ -64,7 +64,7 @@ tasks.getByName<Test>("test") {
 
 spotless {
     antlr4 {
-        antlr4Formatter("1.2.1")
+        antlr4Formatter()
         target("src/*/antlr/**/*.g4")
     }
 }

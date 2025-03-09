@@ -1,13 +1,13 @@
 plugins {
     application
     id("java")
-    id("org.graalvm.buildtools.native") version "0.9.4"
+    id("org.graalvm.buildtools.native") version "0.10.5"
 }
 
 dependencies {
     implementation(project(":jbeancount"))
-    implementation("info.picocli:picocli:4.6.3")
-    annotationProcessor("info.picocli:picocli-codegen:4.6.3")
+    implementation("info.picocli:picocli:4.7.6")
+    annotationProcessor("info.picocli:picocli-codegen:4.7.6")
 }
 
 tasks {
@@ -20,6 +20,6 @@ application {
     mainClass.set("nl.jrdie.beancount.cli.BeancountCli")
 }
 
-nativeBuild {
-    imageName.set("jbeancount")
-}
+//nativeBuild {
+//    imageName.set("jbeancount")
+//}
