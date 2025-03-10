@@ -38,7 +38,7 @@ jobs:
         run: |
           ./gradlew cli:nativeCompile
           mkdir -p jbeancount-${{ matrix.os }}-${{ matrix.arch }}/bin
-          mv cli/build/native/nativeCompile/cli jbeancount-${{ matrix.os }}-${{ matrix.arch }}/bin/app
+          mv cli/build/native/nativeCompile/cli jbeancount-${{ matrix.os }}-${{ matrix.arch }}/bin/jbeancount
           zip -r jbeancount-${{ matrix.os }}-${{ matrix.arch }}.zip jbeancount-${{ matrix.os }}-${{ matrix.arch }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
