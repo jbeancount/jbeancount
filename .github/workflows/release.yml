@@ -16,10 +16,10 @@ jobs:
     runs-on: ${{ matrix.runner }}
     name: Build for ${{ matrix.os }} ${{ matrix.arch }}
     steps:
-      - name: Extract version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV && echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Extract version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV && echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       - name: Set up GraalVM
         uses: graalvm/setup-graalvm@v1
         with:
@@ -32,7 +32,9 @@ jobs:
       - name: Build Native Image
         run: |
           ./gradlew cli:nativeCompile
-          zip -j jbeancount-${{ matrix.os }}-${{ matrix.arch }}.zip cli/build/native/nativeCompile/cli
+          mkdir -p jbeancount-${{ matrix.os }}-${{ matrix.arch }}/bin
+          mv cli/build/native/nativeCompile/cli jbeancount-${{ matrix.os }}-${{ matrix.arch }}/bin
+          zip -r jbeancount-${{ matrix.os }}-${{ matrix.arch }}.zip jbeancount-${{ matrix.os }}-${{ matrix.arch }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -52,7 +54,6 @@ jobs:
           path: dist
           pattern: jbeancount-*
           merge-multiple: true
-      - run: ls -Rla dist
       - name: Release with JReleaser
         uses: jreleaser/release-action@v2
         env:
