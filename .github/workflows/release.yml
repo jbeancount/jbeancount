@@ -32,7 +32,7 @@ jobs:
       - name: Build Native Image
         run: |
           ./gradlew cli:nativeCompile
-          tar -czvf jbeancount-${{ matrix.os }}-${{ matrix.arch }}.tar.gz cli/build/native/nativeCompile/cli
+          tar -czvf jbeancount-${{ matrix.os }}-${{ matrix.arch }}.tar.gz -C cli/build/native/nativeCompile cli
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +50,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: dist
+          pattern: jbeancount-*
+          merge-multiple: true
       - run: ls -Rla dist
       - name: Release with JReleaser
         uses: jreleaser/release-action@v2
