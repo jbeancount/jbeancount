@@ -28,6 +28,8 @@ release:
   github:
     owner: jbeancount
     name: jbeancount
+    update:
+      enabled: true
     changelog:
       enabled: false
 
@@ -40,7 +42,7 @@ distributions:
   jbeancount:
     type: BINARY
     artifacts:
-      - path: dist/jbeancount-macos-aarch64.tar.gz
+      - path: dist/jbeancount-macos-aarch64.zip
         platform: 'osx-aarch_64'
         extraProperties:
           graalVMNativeImage: 'true'
