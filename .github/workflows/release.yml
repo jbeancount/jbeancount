@@ -16,6 +16,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     name: Build for ${{ matrix.os }} ${{ matrix.arch }}
     steps:
+      - name: Extract version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV && echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Set up GraalVM
@@ -42,6 +44,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Download all built artifacts
         uses: actions/download-artifact@v4
         with:
@@ -49,5 +53,6 @@ jobs:
       - name: Release with JReleaser
         uses: jreleaser/release-action@v2
         env:
+          JRELEASER_PROJECT_VERSION: ${{ needs.build.outputs.VERSION }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
