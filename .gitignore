@@ -4,3 +4,6 @@
 /.gradle/
 /build/
 /*/build/
+
+# TODO: Not 100% sure what to do about the version
+/gradle.properties

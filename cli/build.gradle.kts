@@ -2,8 +2,6 @@ plugins {
     id("application")
     id("java")
     id("org.graalvm.buildtools.native") version "0.10.5"
-    // For creating an uber Jar, TODO Can probably remove this? Its nice for testing
-    //id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 dependencies {
@@ -16,9 +14,6 @@ tasks {
     compileJava {
         options.compilerArgs.add("-Aproject=${project.group}/${project.name}")
     }
-//    shadowJar {
-//        archiveClassifier = ""
-//    }
 }
 
 application {
@@ -26,10 +21,10 @@ application {
 }
 
 graalvmNative {
-
-
+    binaries {
+        all {
+            buildArgs.add("-Djbeancount.version=$version")
+            buildArgs.add("--initialize-at-build-time=nl.bluetainer.jbeancount.cli.BeancountCli")
+        }
+    }
 }
-
-//nativeBuild {
-//    imageName.set("jbeancount")
-//}
