@@ -41,6 +41,8 @@ release:
 distributions:
   jbeancount:
     type: BINARY
+    executable:
+      name: app
     artifacts:
       - path: dist/jbeancount-macos-aarch64.zip
         platform: 'osx-aarch_64'
