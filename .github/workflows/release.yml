@@ -25,7 +25,7 @@ jobs:
         run: |
           echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
           echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
-          echo "version='$VERSION'" >> gradle.properties
+          echo "version=${GITHUB_REF#refs/tags/v}" >> gradle.properties
       - name: Set up GraalVM
         uses: graalvm/setup-graalvm@v1
         with:

@@ -23,8 +23,10 @@ application {
 graalvmNative {
     binaries {
         all {
+            // https://www.graalvm.org/latest/reference-manual/native-image/guides/use-system-properties/
             buildArgs.add("-Djbeancount.version=$version")
             buildArgs.add("--initialize-at-build-time=nl.bluetainer.jbeancount.cli.BeancountCli")
+            // TODO Figure out why runtimeArgs doesn't just work in our case
         }
     }
 }

@@ -39,7 +39,6 @@ public final class BeancountCli {
 
 
   public static void main(String... args) {
-    System.getProperties().list(System.out);
     @SuppressWarnings("InstantiationOfUtilityClass")
     final CommandLine commandLine = new CommandLine(new BeancountCli());
     commandLine.registerConverter(Path.class, new PathConverter());
