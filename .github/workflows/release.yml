@@ -15,11 +15,16 @@ jobs:
             runner: macos-latest
     runs-on: ${{ matrix.runner }}
     name: Build for ${{ matrix.os }} ${{ matrix.arch }}
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Extract version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV && echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        id: version
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+          echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
       - name: Set up GraalVM
         uses: graalvm/setup-graalvm@v1
         with:
@@ -57,6 +62,6 @@ jobs:
       - name: Release with JReleaser
         uses: jreleaser/release-action@v2
         env:
-          JRELEASER_PROJECT_VERSION: ${{ needs.build.outputs.VERSION }}
+          JRELEASER_PROJECT_VERSION: ${{ needs.build.outputs.version }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 

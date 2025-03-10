@@ -2,7 +2,6 @@
 
 project:
   name: jbeancount
-  version: 0.0.1
   description: Additional tooling for your Beancount ledger
   license: MPL-2.0
   links:
