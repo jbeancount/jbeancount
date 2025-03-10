@@ -4,12 +4,10 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.10.5"
     // For creating an uber Jar, TODO Can probably remove this? Its nice for testing
     //id("com.github.johnrengelman.shadow") version "8.1.1"
-
-    id("org.jreleaser") version "1.17.0"
 }
 
 dependencies {
-    implementation(project(":jbeancount-lib"))
+    implementation(project(":lib"))
     implementation("info.picocli:picocli:4.7.6")
     annotationProcessor("info.picocli:picocli-codegen:4.7.6")
 }
@@ -29,13 +27,9 @@ application {
 
 graalvmNative {
 
+
 }
 
 //nativeBuild {
 //    imageName.set("jbeancount")
 //}
-
-jreleaser {
-    configFile = File("jreleaser.yml")
-    gitRootSearch = true
-}

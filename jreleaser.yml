@@ -28,21 +28,33 @@ release:
   github:
     owner: jbeancount
     name: jbeancount
+    changelog:
+      enabled: false
+
+#assemble:
+#  nativeImage:
+#    jbeancount:
+#      active: ALWAYS
 
 distributions:
   jbeancount:
+    type: BINARY
     artifacts:
-      - path: build/native/nativeCompile/jbeancount-cli
+      - path: dist/jbeancount-macos-aarch64.tar.gz
         platform: 'osx-aarch_64'
+        extraProperties:
+          graalVMNativeImage: 'true'
+    brew:
+      active: ALWAYS
+      repository:
+        owner: jbeancount
+        name: homebrew-jbeancount
+      multiPlatform: true
 
-assemble:
-  nativeImage:
-    jbeancount: { }
-
-
-packagers:
-  brew:
-    repository:
-      owner: jbeancount
-      name: homebrew-jbeancount
-    multiPlatform: true
+#packagers:
+#  brew:
+#    active: ALWAYS
+#    repository:
+#      owner: jbeancount
+#      name: homebrew-jbeancount
+#    multiPlatform: true
