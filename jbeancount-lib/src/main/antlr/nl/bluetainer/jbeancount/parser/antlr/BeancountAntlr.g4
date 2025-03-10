@@ -3,7 +3,7 @@ grammar BeancountAntlr;
 tokens { INDENT , DEDENT }
 @ header
 {
-package nl.jrdie.beancount.parser.antlr;
+package nl.bluetainer.jbeancount.parser.antlr;
 import com.yuvalshavit.antlr4.DenterHelper;
 }
 @ lexer :: members

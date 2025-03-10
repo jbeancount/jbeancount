@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "nl.bluetainer.jbeancount"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 allprojects {
     repositories {

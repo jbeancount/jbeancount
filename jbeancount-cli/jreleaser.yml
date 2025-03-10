@@ -1,0 +1,48 @@
+# $schema: https://jreleaser.org/schema/jreleaser-schema-1.17.0.json
+
+project:
+  name: jbeancount
+  version: 0.0.1
+  description: Additional tooling for your Beancount ledger
+  license: MPL-2.0
+  links:
+    homepage: https://github.com/jord1e/jbeancount
+  languages:
+    java:
+      groupId: nl.bluetainer.jbeancount
+      version: '23'
+  inceptionYear: '2022'
+  stereotype: CLI
+  copyright: "TODO"
+  authors:
+    - jord1e
+
+platform:
+  replacements:
+    osx-x86_64: mac
+    aarch_64: aarch64
+    x86_64: amd64
+    linux_musl: alpine
+
+release:
+  github:
+    owner: jbeancount
+    name: jbeancount
+
+distributions:
+  jbeancount:
+    artifacts:
+      - path: build/native/nativeCompile/jbeancount-cli
+        platform: 'osx-aarch_64'
+
+assemble:
+  nativeImage:
+    jbeancount: { }
+
+
+packagers:
+  brew:
+    repository:
+      owner: jbeancount
+      name: homebrew-jbeancount
+    multiPlatform: true
